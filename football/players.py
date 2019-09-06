@@ -8,22 +8,30 @@ class Player:
     and that's okay
     '''
     def __init__(self, name=None, yards=120, touchdowns=5, safety=1,
-                 interceptions=0, field_goals=3):
+                 interceptions=0, field_goals=3, tackles=4, sacks=3):
         self.name = name
         self.yards = yards
         self.touchdowns = touchdowns
         self.safety = safety
         self.interceptions = interceptions
         self.field_goals = field_goals
+        self.tackles = tackles
+        self.sacks = sacks
+        self.interceptions = interceptions
 
     def get_points(self):
         '''Gets points scored by the player from stats
         '''
-        td_points = 6 * self.stats['td']
-        safety_points = 2 * self.stats['safety']
+        td_points = 6 * self.touchdowns
+        safety_points = 2 * self.safety
         total_points = td_points + safety_points
         return total_points
-
+    
+    def get_defensive(self):
+        '''Get defensive actions by the player from stats
+        '''
+        defensive = self.tackles + self.sacks + self.interceptions
+        return defensive
 
 class Quarterback(Player):
     '''Override certain parameters of the default Player class and add some
